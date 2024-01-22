@@ -1,0 +1,34 @@
+<%- include("./extras/header.ejs")%>
+<body>
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/swipes" class="nav-link text-secondary" aria-current="page">Swipe</a></li>
+            <li class="nav-item"><a href="/post" class="nav-link primary">Post</a></li>
+            <li class="nav-item"><a href="/" class="nav-link text-secondary">Logout</a></li>
+          </ul>
+        </header>
+    <main class="form-signin w-100 m-auto d-flex flex-column justify-content-center align-items-content">
+        <form action="/postC" method="POST">
+          <h1 class="h3 mb-3 fw-normal">Create A New Job Posting</h1>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="image" placeholder="image link" required>
+            <label for="floatingInput">Image Link</label>
+          </div>
+          <div class="form-floating">
+            <input type="title" class="form-control" id="floatingPassword" name="title" placeholder="title" required>
+            <label for="floatingPassword">Title</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="content" placeholder="title" required>
+            <label for="floatingPassword">Description</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="qualifications" placeholder="title" required>
+            <label for="floatingPassword">Required Qualifications</label>
+          </div>
+          <button class="btn btn-primary w-100 py-2 mb-2" type="submit">Create</button>
+        </form>
+      </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

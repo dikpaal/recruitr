@@ -1,0 +1,225 @@
+<%- include("./extras/header.ejs")%>
+<body>
+    <% if (locals.recruiter) { %>
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link text-primary" aria-current="page">Swipe</a></li>
+            <li class="nav-item"><a href="/post" class="nav-link text-secondary">Post</a></li>
+            <li class="nav-item"><a href="/" class="nav-link text-secondary">Logout</a></li>
+          </ul>
+        </header>
+        <% } %>
+        <% if (locals.user) { %>
+        <input type="hidden" id="email" value='<%= user.email%>'>
+        <% } else {%>
+            <input type="hidden" id="email" value='<%= recruiter.cm%>'> 
+            <%}%>
+      <div class="container">
+        <% if(locals.allJobPostings) {
+            for (let job of allJobPostings) {
+                var random = Math.trunc(Math.random() * 200);%>
+                <div class="card">
+                  <div class="picture" style="background-image: url('https://picsum.photos/<%= random %>')"></div>
+                  <p class="name-of-user"><%= job.title %></p>
+                  <p class="email-of-user"><%= job.description %></p>
+                  <p class="skills-of-user"><%= job.qualifications %></p>
+              </div>
+          <% } } else {
+              for (let user of allUsers) {
+                var random = Math.trunc(Math.random() * 200);%>
+                  <div class="card">
+                    <div class="picture" style="background-image: url('https://picsum.photos/<%= random %>')"></div>
+                      <p class="name-of-user"><%= user.name %></p>
+                      <p class="email-of-user"><%= user.email %></p>
+                      <p class="skills-of-user"><%= user.skills %></p>
+                  </div>
+          <%}} %>
+      </div>
+      <script>
+
+        // INSERTING THE DATA IN THE CARD
+
+        // // CARD
+        // const cardDiv = document.createElement("div")
+        // cardDiv.classList.add("card")
+
+        // // DP
+        // const dpDiv = document.createElement("div")
+        // dpDiv.classList.add("picture")
+        // cardDiv.appendChild(dpDiv);
+
+        // // NAME OF USER
+        // const nameOfUserDiv = document.createElement("p")
+        // nameOfUserDiv.classList.add("name-of-user")
+        
+        // cardDiv.appendChild(nameOfUserDiv);
+
+        // // EMAIL OF USER
+        // const emailOfUserDiv = document.createElement("p")
+        // emailOfUserDiv.classList.add("email-of-user")
+        // emailOfUserDiv.innerText = "apple@apple.com";
+        // cardDiv.appendChild(emailOfUserDiv);
+
+        // // SKILLS OF USER
+        // const skillsOfUserDiv = document.createElement("p")
+        // skillsOfUserDiv.classList.add("skills-of-user")
+        // skillsOfUserDiv.innerText = "Machine Learning Engineer"
+        // cardDiv.appendChild(skillsOfUserDiv);
+
+        // let cardContainer = document.querySelector(".container")
+        // cardContainer.appendChild(cardDiv);
+
+        // // CARD 2
+        // const cardDiv2 = document.createElement("div")
+        // cardDiv2.classList.add("card")
+
+        // // DP
+        // const dpDiv2 = document.createElement("div")
+        // dpDiv2.classList.add("picture")
+        // cardDiv2.appendChild(dpDiv2);
+
+        // // NAME OF USER
+        // const nameOfUserDiv2 = document.createElement("p")
+        // nameOfUserDiv2.classList.add("name-of-user")
+        // nameOfUserDiv2.innerText = "Samsung";
+        // cardDiv2.appendChild(nameOfUserDiv2);
+
+        // // EMAIL OF USER
+        // const emailOfUserDiv2 = document.createElement("p")
+        // emailOfUserDiv2.classList.add("email-of-user")
+        // emailOfUserDiv2.innerText = "sam@sung.com";
+        // cardDiv2.appendChild(emailOfUserDiv2);
+
+        // // SKILLS OF USER
+        // const skillsOfUserDiv2 = document.createElement("p")
+        // skillsOfUserDiv2.classList.add("skills-of-user")
+        // skillsOfUserDiv2.innerText = "Software Engineer"
+        // cardDiv2.appendChild(skillsOfUserDiv2);
+
+        // cardDiv2.style.position = "absolute";
+
+        // cardContainer.appendChild(cardDiv2);
+
+        // SWIPING MECHANISM
+
+        let listOfCards = [];
+        let listOfSwipedRightCards = [];
+
+        // listOfCards.push(cardDiv);
+        // listOfCards.push(cardDiv2);
+
+        // let currentCardIndex = listOfCards.length - 1;
+        
+        // if (currentCardIndex <= 0) {
+        //     currentCardIndex = 0;
+        // }
+
+        let cardContainer = document.querySelector(".container")
+
+        let isDragging = false;
+        let startX;
+
+        let cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            listOfCards.push(card)
+            card.addEventListener('mousedown', startDrag);
+            card.addEventListener('touchstart', startDrag);
+        })
+
+        let currentCardIndex = listOfCards.length - 1;
+        
+        if (currentCardIndex <= 0) {
+            currentCardIndex = 0;
+        }
+
+        const email = document.getElementById("email").value
+
+        // cardContainer.addEventListener('mousedown', startDrag);
+        // cardContainer.addEventListener('touchstart', startDrag);
+    
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.pageX || e.touches[0].pageX;
+            cardContainer.style.transition = 'none';
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag);
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+        }
+    
+        function drag(e) {
+            if (!isDragging) return;
+    
+            const x = e.pageX || e.touches[0].pageX;
+            const diffX = x - startX;
+    
+            const rotation = diffX / 15;
+            const opacity = 1 - Math.abs(diffX / 500);
+    
+            cards[currentCardIndex].style.transform = `translateX(${diffX}px) rotate(${rotation}deg)`;
+            cards[currentCardIndex].style.opacity = opacity;
+    
+            e.preventDefault();
+        }
+    
+        function endDrag(e) {
+            isDragging = false;
+            cardContainer.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+    
+            const x = startX - (e.pageX || e.changedTouches[0].pageX);
+            if (Math.abs(x) > 50) {
+                // Determine swipe direction and trigger callback function
+                const isSwipedRight = x < 0;
+                handleSwipe(isSwipedRight);
+            }
+
+            // resetCardPosition();
+    
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('touchmove', drag);
+            document.removeEventListener('mouseup', endDrag);
+            document.removeEventListener('touchend', endDrag);
+        }
+    
+        // function resetCardPosition() {
+        //     cards[currentCardIndex].style.transform = 'translateX(0) rotate(0deg)';
+        //     cards[currentCardIndex].style.opacity = 1;
+        // }
+    
+        function handleSwipe(isSwipedRight) {
+            // Set opacity to 0 and adjust the index for infinite looping
+            cards[currentCardIndex].style.display = "none";
+    
+            if (isSwipedRight) {
+                const image = cards[currentCardIndex].children[0].innerHTML
+                const title = cards[currentCardIndex].children[1].innerHTML
+                const description = cards[currentCardIndex].children[2].innerHTML
+                const qualifications = cards[currentCardIndex].children[3].innerHTML
+                // ADD THE CARD TO SWIPEDRIGHTCARDS AND REMOVE FROM CARDS
+                fetch(`http://localhost:3000/swiperight?email=${email}&image=${image}&title=${title}&description=${description}&qualifications=${qualifications}`, {
+                    method: "GET"
+                })
+                .then(() => {
+                    alert("Swiped right!")
+                    listOfCards.splice(currentCardIndex, 1);
+                    currentCardIndex--
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            } else {
+            
+                // REMOVE THE CARD FROM THE LIST
+                listOfCards.splice(currentCardIndex, 1);
+                currentCardIndex = (currentCardIndex - 1);
+                console.log(listOfCards.length)
+                console.log(listOfSwipedRightCards.length)
+            }
+            
+            // resetCardPosition();
+        }
+    </script>
+    
+    </body>
+    </html>

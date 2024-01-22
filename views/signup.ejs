@@ -1,0 +1,50 @@
+<%- include("./extras/header.ejs")%>
+<body>
+    <main class="form-signin w-100 m-auto d-flex flex-column justify-content-center align-items-content">
+            <% if (recruiter == 'false') { %>
+                <form action="/swipe" method="POST">
+            <% } %>
+            <% if (recruiter == 'true') { %>
+                <form action="/swipes" method="POST">
+            <% } %>
+                <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+                <% if (recruiter === 'false') { %>
+                    <div class="form-floating">
+                        <input type="name" class="form-control" id="floatingInput" name="name" placeholder="John Doe" required>
+                        <label for="floatingInput">Full Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" name="skills" placeholder="Project Management, Finance, etc." required>
+                        <label for="floatingInput">Skills</label>
+                    </div>
+                    
+                <%}%>
+                
+                <% if (recruiter === 'true') { %>
+                    <div class="form-floating">
+                        <input type="name" class="form-control" id="floatingInput" name="cname" placeholder="Acme Enterprises" required>
+                        <label for="floatingInput">Company Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInput" name="cemail" placeholder="name@example.com" required>
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" name="industry" placeholder="Manufacturing, Finance, etc." required>
+                        <label for="floatingInput">Industry</label>
+                    </div>
+                <%}%>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Sign up</button>
+            </form>
+        </main>
+    </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+html {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 0%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #f7f1ea;
+    /* background-color: pink; */
+    padding-top: 12vh;
+}
+
+section {
+    scroll-snap-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    width: 85vw;
+    max-width: 60em;
+    padding-bottom: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+button {
+    text-decoration: none;
+    cursor: pointer;
+    width: 2em;
+}
+
+footer {
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
+    font-family: 'Roboto Mono', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 2.5em;
+    line-height: 1.8em;
+    font-size: 0.5em;
+    width: 100%;
+    background-color: rgb(247, 230, 209);
+}
+
+
+#copyright-symbol {
+    font-size: 1.4em;
+}
+
+.social-name {
+    font-size: 0.8em;
+    font-family: 'Roboto Mono', sans-serif;
+    display: flex;
+    text-align: start;
+    width: 85vw;
+    max-width: 60em;
+    padding-left: 2em;
+}
+
+
+#about-me-section {
+    height: 100%;
+
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 22em;
+    padding-bottom: 10em;
+    margin-top: 2.5em;
+    margin-bottom: 5em;
+    /* background-color: red; */
+}
+
+#head-links {
+    height: 5em;
+    width: 50%;
+    display: flex;
+    position: absolute;
+    top: 5%;
+    right: 0;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-right: 1em;
+}
+
+a {
+    color: gray;
+}
+
+h2 {
+    font-size: 2.5em;
+    cursor: default;
+    user-select: none;
+}
+
+#about-me-name {
+    /* position: absolute;
+    bottom: 65%; */
+    color: gray;
+    font-weight: bold;
+}
+
+#cursor {
+    color: gray;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 100%;
+    }
+
+    50% {
+        opacity: 0%;
+    }
+}
+
+#about-me-name-top {
+    font-size: 3.5em;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 8em;
+    border-right-color: white;
+    border: none;
+    border-radius: 1em;
+    font-family: 'Roboto Mono', sans-serif;
+    cursor: default;
+    user-select: none;
+}
+
+#about-me-flair {
+    /* position: absolute;
+    bottom: 59.5%; */
+    font-size: 1.2em;
+    color: gray;
+    margin-left: 0.15em;
+    margin-bottom: 1.7em;
+    cursor: default;
+    user-select: none;
+}
+
+#about-me-text {
+    /* position: absolute;
+    top: 44%; */
+    margin-left: 0.5em;
+    max-width: 45em;
+    margin-top: 0.5em;
+    width: 85%;
+    font-size: 0.9em;
+    line-height: 1.7em;
+}
+
+#say-hi-tag {
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#say-hi {
+    background-color: rgb(247, 230, 209);
+    margin-top: 1em;
+    position: relative;
+    /* top: 10%; */
+    right: 0;
+    padding: 1.5em;
+    width: 12em;
+    border-right-color: white;
+    border: none;
+    border-radius: 1em;
+    box-shadow: 0.5000em 0.7500em 1.000em 0 rgba(0, 0, 0, 0.25),
+        -0.5em -0.5em 0.75em 0 rgba(255, 255, 255, 0.3);
+    font-family: 'Roboto Mono', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+#say-hi:hover {
+    background-color: rgb(245, 220, 190);
+}
+
+#say-hi:active {
+    background-color: rgb(251, 217, 175);
+}
+
+.active {
+    margin-block: 0.7em;
+}
+
+@media screen and (max-width: 500px) {
+    #head-links {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 620px) {
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #about-me-flair {
+        /* position: absolute;
+        bottom: 60%; */
+        font-size: 0.8em;
+        color: gray;
+    }
+
+    #about-me-name-top {
+        font-size: 2.5em;
+    }
+
+}
+
+@media screen and (max-width: 430px) {
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #about-me-flair {
+        /* position: absolute;
+        bottom: 62.5%; */
+        font-size: 0.8em;
+        color: gray;
+    }
+
+    #about-me-text {
+        /* position: absolute;
+        top: 41%; */
+        margin-top: 1em;
+        width: 85%;
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+
+    #about-me-name-top {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #about-me-flair {
+        /* position: absolute;
+        bottom: 62.5%; */
+        font-size: 0.8em;
+        color: gray;
+    }
+
+    #about-me-text {
+        /* position: absolute;
+        top: 41%; */
+        margin-top: 1em;
+        width: 85%;
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+
+    #about-me-name-top {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 380px) {
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #about-me-flair {
+        /* position: absolute;
+        bottom: 62.5%; */
+        font-size: 0.8em;
+        color: gray;
+    }
+
+    #about-me-text {
+        /* position: absolute;
+        top: 41%; */
+        margin-top: 1em;
+        width: 85%;
+        font-size: 1em;
+        line-height: 1.5em;
+    }
+
+    #about-me-name-top {
+        font-size: 2.5em;
+    }
+}

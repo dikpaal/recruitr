@@ -1,0 +1,13 @@
+<%- include("./extras/header.ejs")%>
+<body>
+    <div class="center">
+        <div class="landing-container">
+            <h1>You are a:</h1>
+            <div class="button-container">
+                    <button class="auth-button" onclick="startAuthentication('jobSeeker')"><a href="/signup/false" class="text-black" style="text-decoration: none;">Job-Seeker</a></button>
+                    <button class="auth-button" onclick="startAuthentication('employer')"><a href="/signup/true" class="text-black" style="text-decoration: none;">Employer</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
